@@ -1,6 +1,7 @@
 import { imageFromPath, aCollideWithb } from "./utils";
 import { GuaImage } from "./types";
 import GuaGame from "./GuaGame";
+import Ball from "./Ball";
 
 const canvasWidth = 400;
 const canvasHeight = 300;
@@ -38,7 +39,7 @@ class Paddle {
     this.ajustPos();
   }
 
-  collide(ball: GuaImage) {
+  collide(ball: Ball) {
     return aCollideWithb(this, ball);
   }
 }

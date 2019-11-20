@@ -7,9 +7,6 @@ import { loadImages } from "./utils";
 
 const log = console.log.bind(this);
 
-const canvasWidth = 400;
-const canvasHeight = 300;
-
 const blocksArr = [
   { x: 50, y: 150, life: 2 },
   { x: 100, y: 50 }
@@ -33,6 +30,9 @@ async function __main() {
   let score = 0;
 
   let fps = 30;
+
+  // 是否能拖动小球
+  let draggble = false;
 
   const speedControl = <HTMLInputElement>(
     document.getElementById("speed-control")
@@ -92,6 +92,24 @@ async function __main() {
     game.context.font = "16px Arial";
     game.context.fillText(`分数：${score}`, 0, 20);
   };
+
+  game.canvas.addEventListener("mousedown", function(e) {
+    const { offsetX, offsetY } = e;
+    if (ball.containsPoint(offsetX, offsetY)) {
+      function moveHanlder(e) {
+        const { offsetX: targetX, offsetY: targetY } = e;
+
+        ball.x = targetX - ball.image.width / 2;
+        ball.y = targetY - ball.image.height / 2;
+      }
+
+      game.canvas.addEventListener("mousemove", moveHanlder);
+
+      game.canvas.addEventListener("mouseup", () => {
+        game.canvas.removeEventListener("mousemove", moveHanlder);
+      });
+    }
+  });
 }
 
 __main();

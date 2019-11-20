@@ -36,6 +36,18 @@ class Ball {
     this.speedY *= -1;
   }
 
+  containsPoint(x: number, y: number) {
+    if (
+      this.x <= x &&
+      this.x + this.image.width >= x &&
+      this.y < y &&
+      this.y + this.image.height > y
+    ) {
+      return true;
+    }
+    return false;
+  }
+
   move() {
     if (this.fired) {
       this.x += this.speedX;
