@@ -13,10 +13,10 @@ class Block {
   fired: boolean;
   alive: boolean;
 
-  constructor() {
+  constructor(x = 100, y = 100) {
     const image = imageFromPath(blockImage);
-    this.x = 100;
-    this.y = 100;
+    this.x = x;
+    this.y = y;
     this.image = image;
     this.alive = true;
   }

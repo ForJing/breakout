@@ -5,8 +5,10 @@ class GuaGame {
   context: CanvasRenderingContext2D;
   actions: any;
   keydowns: Keydowns;
+  fps: number;
+  paused: boolean;
 
-  constructor() {
+  constructor(fps = 30) {
     const canvas = <HTMLCanvasElement>document.getElementById("canvas");
     const context = canvas.getContext("2d");
 
@@ -14,28 +16,40 @@ class GuaGame {
     this.context = context;
     this.actions = {};
     this.keydowns = {};
+    this.fps = fps;
     this.setTimer();
     this.setUpListeners();
+    this.paused = false;
+  }
+
+  pause() {
+    this.paused = !this.paused;
   }
 
   setTimer() {
-    setInterval(() => {
-      // events
-      const keys = Object.keys(this.actions);
-      keys.forEach(key => {
-        const action = this.actions[key];
-        if (this.keydowns[key]) {
-          action();
-        }
-      });
+    const that = this;
+    function loop() {
+      setTimeout(() => {
+        // events
+        const keys = Object.keys(that.actions);
+        keys.forEach(key => {
+          const action = that.actions[key];
+          if (that.keydowns[key]) {
+            action();
+          }
+        });
 
-      // update
-      this.update();
+        // update
+        that.update();
 
-      this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-      // draw
-      this.draw();
-    }, 1000 / 30);
+        that.context.clearRect(0, 0, that.canvas.width, that.canvas.height);
+        // draw
+        that.draw();
+
+        loop();
+      }, 1000 / that.fps);
+    }
+    loop();
   }
 
   setUpListeners() {
