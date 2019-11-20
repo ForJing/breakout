@@ -1,14 +1,15 @@
 import { Keydowns, GuaImage } from "./types";
+import Scene from "./scene";
 
 class GuaGame {
   canvas: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
   actions: any;
-  33333333333;
   keydowns: Keydowns;
   fps: number;
   paused: boolean;
   images: any;
+  scene: Scene;
 
   constructor(fps = 30, images = {}) {
     const canvas = <HTMLCanvasElement>document.getElementById("canvas");
@@ -19,8 +20,7 @@ class GuaGame {
     this.actions = {};
     this.keydowns = {};
     this.fps = fps;
-    this.setTimer();
-    this.setUpListeners();
+
     this.paused = false;
     this.images = images;
   }
@@ -72,12 +72,21 @@ class GuaGame {
     this.actions[key] = callback;
   }
 
-  draw() {}
+  draw() {
+    this.scene.draw();
+  }
 
-  update() {}
+  update() {
+    this.scene.update();
+  }
 
   drawImage(guaImage: GuaImage) {
     this.context.drawImage(guaImage.image, guaImage.x, guaImage.y);
+  }
+
+  run() {
+    this.setUpListeners();
+    this.setTimer();
   }
 }
 
