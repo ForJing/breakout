@@ -1,9 +1,9 @@
-import GuaGame from "../gua_game/GuaGame";
+import GuaGame from "../../gua_game/GuaGame";
 import Paddle from "./Paddle";
 import Ball from "./Ball";
 import { loadLevel } from "./level";
 import Block from "./Block";
-import SceneEnd from "../scene_end/scene_end";
+import SceneEnd from "../end/scene_end";
 
 class Scene {
   game: GuaGame;

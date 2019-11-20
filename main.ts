@@ -1,7 +1,7 @@
-import GuaGame from "./GuaGame";
-import Scene from "./scene";
+import GuaGame from "./gua_game/GuaGame";
+import Scene from "./scene/main/scene";
 import "./style.scss";
-import { loadImages } from "./utils";
+import { loadImages } from "./gua_game/utils";
 
 const log = console.log.bind(this);
 
