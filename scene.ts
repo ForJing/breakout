@@ -3,6 +3,7 @@ import Paddle from "./Paddle";
 import Ball from "./Ball";
 import { loadLevel } from "./level";
 import Block from "./Block";
+import SceneEnd from "./scene_end";
 
 class Scene {
   game: GuaGame;
@@ -68,6 +69,12 @@ class Scene {
 
   update() {
     this.ball.move();
+
+    if (this.ball.y > this.paddle.y) {
+      const endScene = new SceneEnd(this.game);
+      this.game.scene = endScene;
+    }
+
     // 判断相撞
     if (this.paddle.collide(this.ball)) {
       this.ball.bounce();

@@ -9,7 +9,7 @@ class GuaGame {
   fps: number;
   paused: boolean;
   images: any;
-  scene: Scene;
+  scene: any;
 
   constructor(fps = 30, images = {}) {
     const canvas = <HTMLCanvasElement>document.getElementById("canvas");
