@@ -1,5 +1,4 @@
-import { Keydowns, GuaImage } from "./types";
-import Scene from "./scene";
+import { GuaImage, Keydowns } from "./types";
 
 class GuaGame {
   canvas: HTMLCanvasElement;
