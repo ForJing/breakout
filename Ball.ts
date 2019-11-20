@@ -4,8 +4,6 @@ import GuaGame from "./GuaGame";
 const canvasWidth = 400;
 const canvasHeight = 300;
 
-const ballImage = require("./ball.png");
-
 class Ball {
   x: number;
   y: number;
@@ -15,7 +13,6 @@ class Ball {
   fired: boolean;
 
   constructor(game: GuaGame) {
-    const image = imageFromPath(ballImage);
     this.x = 50;
     this.y = 100;
     this.speedX = 5;

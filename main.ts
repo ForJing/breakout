@@ -7,11 +7,11 @@ const log = console.log.bind(this);
 
 async function __main() {
   const images = {
-    ball: require("./ball.png"),
-    paddle: require("./paddle.png"),
-    block: require("./block.png"),
+    ball: require("./images/ball.png"),
+    paddle: require("./images/paddle.png"),
+    block: require("./images/block.png"),
 
-    brokenBlock: require("./broke_broken.png")
+    brokenBlock: require("./images/broke_broken.png")
   };
 
   const imgs = await loadImages(images);
