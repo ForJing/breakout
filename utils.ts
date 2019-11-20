@@ -6,16 +6,7 @@ export const imageFromPath = path => {
   return img;
 };
 
-// export function collide(a: GuaImage, b: GuaImage) {
-//   if (aCollideWithb(a, b) || aCollideWithb(b, a)) {
-//     return true;
-//   } else {
-//     return false;
-//   }
-// }
-
 export function aCollideWithb(a: GuaImage, b: GuaImage) {
-  console.log({ a, b });
   if (
     a.x + a.image.width > b.x &&
     a.x < b.image.width + b.x &&

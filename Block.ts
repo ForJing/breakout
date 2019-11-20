@@ -32,7 +32,6 @@ class Block {
     if (life === 2) {
       image = this.game.imageByName("block");
     }
-    console.log({ image });
     return image;
   }
 
