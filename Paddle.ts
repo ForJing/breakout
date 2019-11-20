@@ -1,22 +1,22 @@
 import { imageFromPath, aCollideWithb } from "./utils";
 import { GuaImage } from "./types";
+import GuaGame from "./GuaGame";
 
 const canvasWidth = 400;
 const canvasHeight = 300;
-const paddleImage = require("./paddle.png");
 
 class Paddle {
   x: number;
   y: number;
   speed: number;
   image: HTMLImageElement;
+  game: GuaGame;
 
-  constructor() {
-    const image = imageFromPath(paddleImage);
+  constructor(game: GuaGame) {
     this.x = 100;
     this.y = 200;
     this.speed = 15;
-    this.image = image;
+    this.image = game.imageByName("paddle");
   }
 
   ajustPos() {

@@ -4,11 +4,13 @@ class GuaGame {
   canvas: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
   actions: any;
+  33333333333;
   keydowns: Keydowns;
   fps: number;
   paused: boolean;
+  images: any;
 
-  constructor(fps = 30) {
+  constructor(fps = 30, images = {}) {
     const canvas = <HTMLCanvasElement>document.getElementById("canvas");
     const context = canvas.getContext("2d");
 
@@ -20,10 +22,15 @@ class GuaGame {
     this.setTimer();
     this.setUpListeners();
     this.paused = false;
+    this.images = images;
   }
 
   pause() {
     this.paused = !this.paused;
+  }
+
+  imageByName(name) {
+    return this.images[name];
   }
 
   setTimer() {

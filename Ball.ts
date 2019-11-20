@@ -1,4 +1,5 @@
 import { imageFromPath } from "./utils";
+import GuaGame from "./GuaGame";
 
 const canvasWidth = 400;
 const canvasHeight = 300;
@@ -13,13 +14,13 @@ class Ball {
   image: HTMLImageElement;
   fired: boolean;
 
-  constructor() {
+  constructor(game: GuaGame) {
     const image = imageFromPath(ballImage);
     this.x = 50;
     this.y = 100;
     this.speedX = 5;
     this.speedY = 5;
-    this.image = image;
+    this.image = game.imageByName("ball");
   }
 
   ajustPos() {

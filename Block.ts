@@ -1,8 +1,6 @@
 import { imageFromPath, aCollideWithb } from "./utils";
-import { GuaImage } from "./types";
 import Ball from "./Ball";
-
-const blockImage = require("./block.png");
+import GuaGame from "./GuaGame";
 
 class Block {
   x: number;
@@ -12,13 +10,38 @@ class Block {
   image: HTMLImageElement;
   fired: boolean;
   alive: boolean;
+  life: number;
+  game: GuaGame;
 
-  constructor(x = 100, y = 100) {
-    const image = imageFromPath(blockImage);
+  constructor(game: GuaGame, x = 100, y = 100, life = 1) {
     this.x = x;
     this.y = y;
-    this.image = image;
     this.alive = true;
+    this.life = life;
+    this.game = game;
+
+    const image = this.getImageBylife(life);
+    this.image = image;
+  }
+
+  getImageBylife(life) {
+    let image;
+    if (life === 1) {
+      image = this.game.imageByName("brokenBlock");
+    }
+    if (life === 2) {
+      image = this.game.imageByName("block");
+    }
+    console.log({ image });
+    return image;
+  }
+
+  kill() {
+    this.life--;
+    this.image = this.getImageBylife(this.life);
+    if (this.life <= 0) {
+      this.alive = false;
+    }
   }
 
   collide(ball: Ball) {
