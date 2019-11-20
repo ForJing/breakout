@@ -1,48 +1,49 @@
 import "./style.scss";
-const paddleImage = require("./paddle.png");
+import GuaGame from "./GuaGame";
+import Paddle from "./Paddle";
+import Ball from "./Ball";
+import Block from "./Block";
 
 const log = console.log.bind(this);
 
-const imageFromPath = path => {
-  const img = new Image();
-  img.src = path;
-  return img;
-};
-
-class Paddle {
-  x: number;
-  y: number;
-  speed: number;
-  image: HTMLImageElement;
-
-  constructor() {
-    const image = imageFromPath(paddleImage);
-    this.x = 100;
-    this.y = 200;
-    this.speed = 5;
-    this.image = image;
-  }
-
-  moveLeft() {
-    this.x -= this.speed;
-  }
-
-  moveRight() {
-    this.x += this.speed;
-  }
-}
+const canvasWidth = 400;
+const canvasHeight = 300;
 
 function __main() {
-  const canvas = <HTMLCanvasElement>document.getElementById("canvas");
-  const context = canvas.getContext("2d");
-
+  const game = new GuaGame();
   const paddle = new Paddle();
+  const ball = new Ball();
+  const block = new Block();
 
-  setInterval(function() {
-    paddle.moveRight();
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    context.drawImage(paddle.image, paddle.x, paddle.y);
-  }, 1000 / 30);
+  game.registerAction("a", () => paddle.moveLeft());
+
+  game.registerAction("d", () => paddle.moveRight());
+
+  game.registerAction("f", () => {
+    ball.fire();
+  });
+
+  game.update = function() {
+    ball.move();
+
+    // 判断相撞
+    if (paddle.collide(ball)) {
+      ball.bounce();
+    }
+    if (block.collide(ball)) {
+      block.alive = false;
+      ball.bounce();
+    }
+  };
+
+  game.draw = function() {
+    game.drawImage(paddle);
+    game.drawImage(ball);
+
+    if (block.alive) {
+      game.drawImage(block);
+    }
+  };
 }
 
 __main();
