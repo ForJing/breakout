@@ -1,5 +1,5 @@
 import GuaGame from "./gua_game/GuaGame";
-import Scene from "./scene/main/scene";
+import SceneTitle from "./scene/title/scene_title";
 import "./style.scss";
 import { loadImages } from "./gua_game/utils";
 
@@ -16,7 +16,7 @@ async function __main() {
 
   const imgs = await loadImages(images);
   const game = new GuaGame(30, imgs);
-  const scene = new Scene(game);
+  const scene = new SceneTitle(game);
   game.scene = scene;
 
   // let score = 0;
