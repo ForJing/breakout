@@ -1,4 +1,4 @@
-import GuaGame from "./GuaGame";
+import GuaGame from "../gua_game/GuaGame";
 
 class SceneEnd {
   game: GuaGame;
