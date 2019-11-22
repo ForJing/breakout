@@ -117,7 +117,7 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"GuaGame.ts":[function(require,module,exports) {
+})({"gua_game/GuaGame.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -217,7 +217,7 @@ function () {
 }();
 
 exports.default = GuaGame;
-},{}],"utils.ts":[function(require,module,exports) {
+},{}],"gua_game/utils.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -278,14 +278,14 @@ function loadImage(name, path) {
     }
   });
 }
-},{}],"Paddle.ts":[function(require,module,exports) {
+},{}],"scene/main/Paddle.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var utils_1 = require("./utils");
+var utils_1 = require("../../gua_game/utils");
 
 var canvasWidth = 400;
 var canvasHeight = 300;
@@ -328,7 +328,7 @@ function () {
 }();
 
 exports.default = Paddle;
-},{"./utils":"utils.ts"}],"Ball.ts":[function(require,module,exports) {
+},{"../../gua_game/utils":"gua_game/utils.ts"}],"scene/main/Ball.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -395,14 +395,14 @@ function () {
 }();
 
 exports.default = Ball;
-},{}],"Block.ts":[function(require,module,exports) {
+},{}],"scene/main/Block.ts":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var utils_1 = require("./utils");
+var utils_1 = require("../../gua_game/utils");
 
 var Block =
 /** @class */
@@ -460,7 +460,7 @@ function () {
 }();
 
 exports.default = Block;
-},{"./utils":"utils.ts"}],"level.ts":[function(require,module,exports) {
+},{"../../gua_game/utils":"gua_game/utils.ts"}],"scene/main/level.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -495,24 +495,35 @@ function loadLevel(game) {
 }
 
 exports.loadLevel = loadLevel;
-},{"./Block":"Block.ts"}],"scene_end.ts":[function(require,module,exports) {
+},{"./Block":"scene/main/Block.ts"}],"scene/end/scene_end.ts":[function(require,module,exports) {
 "use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var scene_title_1 = __importDefault(require("../title/scene_title"));
 
 var SceneEnd =
 /** @class */
 function () {
   function SceneEnd(game) {
     this.game = game;
+    game.registerAction("r", function () {
+      game.scene = new scene_title_1.default(game);
+    });
   }
 
   SceneEnd.prototype.draw = function () {
     var game = this.game;
     game.context.font = "16px Arial";
-    game.context.fillText("\u6E38\u620F\u7ED3\u675F", 150, 150);
+    game.context.fillText("\u6E38\u620F\u7ED3\u675F \u6309r\u8FD4\u56DE\u6807\u9898\u754C\u9762", 100, 150);
   };
 
   SceneEnd.prototype.update = function () {};
@@ -521,7 +532,7 @@ function () {
 }();
 
 exports.default = SceneEnd;
-},{}],"scene.ts":[function(require,module,exports) {
+},{"../title/scene_title":"scene/title/scene_title.ts"}],"scene/main/scene.ts":[function(require,module,exports) {
 "use strict";
 
 var __importDefault = this && this.__importDefault || function (mod) {
@@ -540,7 +551,7 @@ var Ball_1 = __importDefault(require("./Ball"));
 
 var level_1 = require("./level");
 
-var scene_end_1 = __importDefault(require("./scene_end"));
+var scene_end_1 = __importDefault(require("../end/scene_end"));
 
 var Scene =
 /** @class */
@@ -626,7 +637,44 @@ function () {
 }();
 
 exports.default = Scene;
-},{"./Paddle":"Paddle.ts","./Ball":"Ball.ts","./level":"level.ts","./scene_end":"scene_end.ts"}],"../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+},{"./Paddle":"scene/main/Paddle.ts","./Ball":"scene/main/Ball.ts","./level":"scene/main/level.ts","../end/scene_end":"scene/end/scene_end.ts"}],"scene/title/scene_title.ts":[function(require,module,exports) {
+"use strict";
+
+var __importDefault = this && this.__importDefault || function (mod) {
+  return mod && mod.__esModule ? mod : {
+    "default": mod
+  };
+};
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var scene_1 = __importDefault(require("../main/scene"));
+
+var SceneTitle =
+/** @class */
+function () {
+  function SceneTitle(game) {
+    this.game = game;
+    game.registerAction("k", function () {
+      game.scene = new scene_1.default(game);
+    });
+  }
+
+  SceneTitle.prototype.draw = function () {
+    var game = this.game;
+    game.context.font = "16px Arial";
+    game.context.fillText("\u6309 k \u5F00\u59CB\u6E38\u620F", 150, 150);
+  };
+
+  SceneTitle.prototype.update = function () {};
+
+  return SceneTitle;
+}();
+
+exports.default = SceneTitle;
+},{"../main/scene":"scene/main/scene.ts"}],"../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
 var bundleURL = null;
 
 function getBundleURLCached() {
@@ -860,13 +908,13 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var GuaGame_1 = __importDefault(require("./GuaGame"));
+var GuaGame_1 = __importDefault(require("./gua_game/GuaGame"));
 
-var scene_1 = __importDefault(require("./scene"));
+var scene_title_1 = __importDefault(require("./scene/title/scene_title"));
 
 require("./style.scss");
 
-var utils_1 = require("./utils");
+var utils_1 = require("./gua_game/utils");
 
 var log = console.log.bind(this);
 
@@ -889,7 +937,7 @@ function __main() {
         case 1:
           imgs = _a.sent();
           game = new GuaGame_1.default(30, imgs);
-          scene = new scene_1.default(game);
+          scene = new scene_title_1.default(game);
           game.scene = scene;
           fps = 30;
           speedControl = document.getElementById("speed-control");
@@ -914,7 +962,7 @@ function __main() {
 }
 
 __main();
-},{"./GuaGame":"GuaGame.ts","./scene":"scene.ts","./style.scss":"style.scss","./utils":"utils.ts","./images/ball.png":"images/ball.png","./images/paddle.png":"images/paddle.png","./images/block.png":"images/block.png","./images/broke_broken.png":"images/broke_broken.png"}],"../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./gua_game/GuaGame":"gua_game/GuaGame.ts","./scene/title/scene_title":"scene/title/scene_title.ts","./style.scss":"style.scss","./gua_game/utils":"gua_game/utils.ts","./images/ball.png":"images/ball.png","./images/paddle.png":"images/paddle.png","./images/block.png":"images/block.png","./images/broke_broken.png":"images/broke_broken.png"}],"../../.config/yarn/global/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
