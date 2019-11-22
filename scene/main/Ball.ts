@@ -1,5 +1,4 @@
-import { imageFromPath } from "./utils";
-import GuaGame from "./GuaGame";
+import GuaGame from "../../gua_game/GuaGame";
 
 const canvasWidth = 400;
 const canvasHeight = 300;

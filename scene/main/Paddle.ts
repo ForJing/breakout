@@ -1,6 +1,5 @@
-import { imageFromPath, aCollideWithb } from "./utils";
-import { GuaImage } from "./types";
-import GuaGame from "./GuaGame";
+import GuaGame from "../../gua_game/GuaGame";
+import { aCollideWithb } from "../../gua_game/utils";
 import Ball from "./Ball";
 
 const canvasWidth = 400;

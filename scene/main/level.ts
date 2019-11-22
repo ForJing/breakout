@@ -1,5 +1,5 @@
 import Block from "./Block";
-import GuaGame from "./GuaGame";
+import GuaGame from "../../gua_game/GuaGame";
 
 const blocksArr = [
   { x: 50, y: 150, life: 2 },

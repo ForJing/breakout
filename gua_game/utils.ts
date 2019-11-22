@@ -1,4 +1,4 @@
-import { GuaImage } from "./types";
+import { GuaImage } from "../types";
 
 export const imageFromPath = path => {
   const img = new Image();

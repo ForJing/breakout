@@ -1,6 +1,6 @@
-import { imageFromPath, aCollideWithb } from "./utils";
-import Ball from "./Ball";
-import GuaGame from "./GuaGame";
+import { imageFromPath, aCollideWithb } from '../../gua_game/utils';
+import Ball from './Ball';
+import GuaGame from '../../gua_game/GuaGame';
 
 class Block {
   x: number;
